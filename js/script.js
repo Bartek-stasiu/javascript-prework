@@ -1,51 +1,48 @@
-let buttonRock = document.getElementById('button-rock'),
+﻿let buttonRock = document.getElementById('button-rock'),
 buttonPaper = document.getElementById('button-paper'),
-buttonTest = document.getElementById('button-paper'),
 buttonScissors = document.getElementById('button-scissors');
 
 function buttonClicked(argButtonName) {
   clearMessages();
-  console.log(argButtonName + ' zosta� klikni�ty');
+  const playerMove = argButtonName,
+  randomNumber  = Math.floor(Math.random() * 3 + 1);
+  console.log('wylosowana liczba to: ' + randomNumber);
+  const computerMove = getMoveName(randomNumber);
+  console.log('ruch komputera to: ' + computerMove);
+  displayResult(playerMove, computerMove);
+  console.log(argButtonName + ' został kliknięty');
+}
 
 function getMoveName(argMoveId) {
-  console.log('wywo�ano funkcj� getMoveName z argumentem: ' + argMoveId);
+  console.log('wywołano funkcję getMoveName z argumentem: ' + argMoveId);
   if (argMoveId == 1) {
-    return 'kamie�';
+    return 'kamień';
   } else if (argMoveId == 2) {
     return 'papier';
   } else if (argMoveId == 3) {
-    return 'no�yce';
+    return 'nożyce';
   } else {
-    printMessage('Nie znam ruchu o id ' + argMoveId + '. Zak�adam, �e chodzi�o o "kamie�".');
-    return 'kamie�';
+    printMessage('Nie znam ruchu o id ' + argMoveId + '. Zakładam, że chodziło o "kamień".');
+    return 'kamień';
   }
 }
 
 function displayResult(argPlayerMove, argComputerMove) {
-  console.log('wywo�ano funkcj� displayResults z argumentami: ' + argPlayerMove + ', ' + argComputerMove);
-  if (argPlayerMove == 'papier' && argComputerMove == 'kamie�') {
+  console.log('wywołano funkcję displayResults z argumentami: ' + argPlayerMove + ', ' + argComputerMove);
+  if (argPlayerMove == 'papier' && argComputerMove == 'kamień') {
     printMessage('Wygrywasz!');
-  } else if (argPlayerMove == 'kamie�' && argComputerMove == 'no�yce') {
+  } else if (argPlayerMove == 'kamień' && argComputerMove == 'nożyce') {
     printMessage('Wygrywasz!');
-  } else if (argPlayerMove == 'no�yce' && argComputerMove == 'papier') {
+  } else if (argPlayerMove == 'nożyce' && argComputerMove == 'papier') {
     printMessage('Wygrywasz!');
   } else if (argPlayerMove == argComputerMove) {
     printMessage('Remis');
   } else {
     printMessage('Przegrywasz :(');
   }
-  printMessage('Zagra�em ' + argComputerMove + ', a Ty ' + argPlayerMove);
+  printMessage('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
 }
 
-const playerMove = argButtonName;
-let randomNumber  = Math.floor(Math.random() * 3 + 1);
-
-console.log('wylosowana liczba to: ' + randomNumber);
-computerMove = getMoveName(randomNumber);
-console.log('ruch komputera to: ' + computerMove);
-displayResult(playerMove, computerMove);
-}
-
-buttonRock.addEventListener('click', function(){ buttonClicked('kamie�'); });
+buttonRock.addEventListener('click', function(){ buttonClicked('kamień'); });
 buttonPaper.addEventListener('click', function(){ buttonClicked('papier'); });
-buttonScissors.addEventListener('click', function(){ buttonClicked('no�yczki'); });
+buttonScissors.addEventListener('click', function(){ buttonClicked('nożyce'); });
